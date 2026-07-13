@@ -46,29 +46,29 @@ Remote sensing data
 
 This module is used to construct landslide inventories and change-detection products, and it forms the foundation of the entire analysis workflow.
 
-- gee/run_ccdc_break_detection.py
+- 01_GEE_run_ccdc_break_detection.py
   - Uses Google Earth Engine and the CCDC (Continuous Change Detection) method for time-series change detection.
   - Mainly used to identify change points and potential landslide areas from Landsat image sequences.
 
-- python/code0_delta_brightness.py
+- 02_delta_brightness.py
   - Calculates brightness differences between Landsat images from different years.
   - Helps identify surface reflectance and brightness anomalies caused by landslides.
 
-- python/code0_delta_reflectance.py
+- 03_delta_reflectance.py
   - Calculates reflectance changes across different bands.
 
-- python/code0_deviation_angle.py
+- 04_deviation_angle.py
   - Calculates spectral deviation angles to assist in identifying surface change types.
 
-- python/code1_tbreak_floodfill.py
+- 05_tbreak_floodfill.py
   - Performs floodfill segmentation based on temporal breakpoints.
   - Can be used to extract spatially connected landslide patches from change-detection results.
 
-- python/code2_select1.py, code3_select2.py, and code4_select3.py
+- 06_select1.py, 07_select2.py, and 08_select3.py
   - Perform multi-stage filtering and quality control.
   - Mainly used to remove misclassified patches and improve the quality of the landslide inventory.
 
-- python/code5_merge.py
+- 09_merge.py
   - Merges multi-year results to generate final landslide mapping products or annual result sets.
 
 ### 02_inventory_validation
