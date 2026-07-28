@@ -1,34 +1,13 @@
 # -*- coding: utf-8 -*-
 # ============================================================
-# road_cohort_landslide_density_curves_multizone.py
-#
 # Purpose:
 #   Draw cohort-level landslide density curves around newly built roads.
-#
-# Outputs:
-#   Version 1:
-#       Landslide density in 300 m, 500 m, 1000 m and background zones.
-#
-#   Version 2:
-#       Pre-normalized landslide density curve, using the mean of
-#       tau = -4, -3, -2, -1 as baseline.
 #
 # Design:
 #   Road construction cohorts: 2004–2020
 #   Event-time window: -4 to +4 years
 #   Near-road zones: landslide points within 300 m, 500 m and 1000 m of newly built roads; background 1-3 km
 #
-# Input:
-#   Annual new-road shapefiles:
-#       H:\Himalaya\cause\Road\roads_new_build_yearly\newroad_shp_merge
-#       roads_new_年份.shp
-#
-#   Landslide points:
-#       H:\Himalaya\13w_landslides_list_final_points.shp
-#       Field: year
-#
-#   Hotspot grids:
-#       H:\Himalaya\grid\hot_grid_20_24\Himalaya_Landslide_Sig_grid.shp
 # ============================================================
 
 import os
