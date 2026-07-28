@@ -28,12 +28,12 @@ INPUT_CSV = os.path.join(
 
 OUT_PNG = os.path.join(
     ANALYSIS_DIR,
-    "Fig_LSM_area_density_population_by_jenks_class_nature_style.png",
+    "Fig_LSM_area_density_population_by_jenks_class.png",
 )
 
 OUT_PDF = os.path.join(
     ANALYSIS_DIR,
-    "Fig_LSM_area_density_population_by_jenks_class_nature_style.pdf",
+    "Fig_LSM_area_density_population_by_jenks_class.pdf",
 )
 
 
