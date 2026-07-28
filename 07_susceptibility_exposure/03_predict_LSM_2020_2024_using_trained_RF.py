@@ -28,18 +28,18 @@ file_mapping = {
     'dist_to_fault': 'dist_to_fault_new.tif', 
     'dist_to_road':  'dist_to_road_2024_new.tif', 
     'dist_to_water': 'dist_to_water_new.tif',
-    'elevation':     'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM数据.tif',
+    'elevation':     'D:/dataset/30mDEM.tif',
     'NDVI':          'aligned_medium_NDVI_2024.tif',  
-    'slope':         'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/slope_from_dem.tif',
+    'slope':         'D:/dataset/slope_from_dem.tif',
     'Annual_Mean':   'aligned_pre_2024_new.tif',  
     
-    'aspect_sin':    'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/aspect_from_dem_sin.tif',
-    'aspect_cos':    'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/aspect_from_dem_cos.tif',
-    'plan_curv':     'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/plan_curvature.tif',
-    'profile_curv':  'D:/喜马拉雅/dataset/喜马拉雅山区30mDEM-数据实体/喜马拉雅山区30mDEM-数据实体/profile_curvature.tif',
+    'aspect_sin':    'D:/dataset/aspect_from_dem_sin.tif',
+    'aspect_cos':    'D:/dataset/aspect_from_dem_cos.tif',
+    'plan_curv':     'D:/dataset/plan_curvature.tif',
+    'profile_curv':  'D:/dataset/profile_curvature.tif',
 
-    'LC_Raw':     'D:/喜马拉雅/dataset/喜马拉雅山区30m土地覆盖(2020)/aligned_喜马拉雅30m土地覆盖(2020)_LSM.tif', 
-    'Litho_Raw':        'D:/喜马拉雅/dataset/litho/aligned_GLiM_clip_Dissolve_PolygonTo4_LSM.tif'  
+    'LC_Raw':     'D:/dataset/LULC_30m_LSM.tif', 
+    'Litho_Raw':        'D:/dataset/GLiM_LSM.tif'  
 
 }
 
