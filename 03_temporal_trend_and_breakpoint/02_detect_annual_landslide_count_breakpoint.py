@@ -1,5 +1,4 @@
 # =========================================================
-# trend_breakpoint_analysis.py
 # Data-driven breakpoint figure for annual landslide counts
 # =========================================================
 
@@ -30,7 +29,7 @@ mpl.rcParams["ps.fonttype"] = 42
 # DATA
 # =========================================================
 csv_file = (
-    r"H:\Himalaya\figure\figure2总统计图"
+    r"H:\Himalaya\figure"
     r"\13w_landslides_count_approx_95CI.csv"
 )
 
