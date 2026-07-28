@@ -52,7 +52,7 @@ def random_points_from_binary_raster_with_csv(
             print(f"Candidate pixels are sufficient, randomly sampling {sample_size} points.")
         else:
             sampled_idx = np.random.choice(total_candidates, size=sample_size, replace=True)
-            print(f"⚠️ Warning: Insufficient candidate pixels ({total_candidates} < {sample_size}), performing sampling with replacement.")
+            print(f"Warning: Insufficient candidate pixels ({total_candidates} < {sample_size}), performing sampling with replacement.")
 
         sampled_rows = rows[sampled_idx]
         sampled_cols = cols[sampled_idx]
