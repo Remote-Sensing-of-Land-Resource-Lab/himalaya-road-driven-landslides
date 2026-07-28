@@ -37,7 +37,7 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     t0 = time.time()
     os.makedirs(cache_dir, exist_ok=True)
 
-    print("🔹 Reading landslide points and grids...")
+    print("Reading landslide points and grids...")
     df = pd.read_csv(csv_path)
     gdf = gpd.GeoDataFrame(
         df,
@@ -49,15 +49,15 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     if gdf.crs != grid.crs:
         gdf = gdf.to_crs(grid.crs)
 
-    print("🔹 Performing landslide point-grid spatial join...")
+    print("Performing landslide point-grid spatial join...")
     joined = gpd.sjoin(gdf, grid, how="inner", predicate="within")
 
-    print("🔹 Calculating annual landslide frequency...")
+    print("Calculating annual landslide frequency...")
     annual_counts = joined.groupby(['index_right', 'year']).size().unstack(fill_value=0)
     annual_counts = annual_counts.reindex(columns=ALL_YEARS, fill_value=0)
     annual_counts = annual_counts.reindex(grid.index, fill_value=0)
 
-    print("🔹 Identifying hotspot grids using the Mann-Kendall trend test...")
+    print("Identifying hotspot grids using the Mann-Kendall trend test...")
     total_sums = annual_counts.sum(axis=1).values
     slopes = []
     p_values = []
@@ -84,10 +84,10 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     target_grid_ids = grid[sig_increase_mask].index
     hotspot_data = joined[joined["index_right"].isin(target_grid_ids)].copy()
 
-    print(f"✅ Number of hotspot grids: {len(target_grid_ids)}")
-    print(f"✅ Number of landslide points in hotspot areas: {len(hotspot_data)}")
+    print(f"Number of hotspot grids: {len(target_grid_ids)}")
+    print(f"Number of landslide points in hotspot areas: {len(hotspot_data)}")
 
-    print("🔹 Reading roads and creating a 1000 m buffer...")
+    print("Reading roads and creating a 1000 m buffer...")
     roads = gpd.read_file(road_path)
 
     if roads.crs != hotspot_data.crs:
@@ -100,7 +100,7 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
         crs="EPSG:3857"
     ).to_crs(hotspot_data.crs)
 
-    print("🔹 Determining whether hotspot landslide points fall within road buffers...")
+    print("Determining whether hotspot landslide points fall within road buffers...")
     points_near_road = gpd.sjoin(
         hotspot_data,
         roads_buffer_gdf,
@@ -113,7 +113,7 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     is_near_cleaned = is_near.groupby(is_near.index).any()
     hotspot_data["is_near_road"] = is_near_cleaned.reindex(hotspot_data.index, fill_value=False)
 
-    print("🔹 Counting landslides inside/outside road buffers by year (without subtracting earthquake-triggered landslides)...")
+    print("Counting landslides inside/outside road buffers by year (without subtracting earthquake-triggered landslides)...")
     yearly_road_stats = (
         hotspot_data.groupby(["year", "is_near_road"])
         .size()
@@ -131,13 +131,13 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
         False: "outside_buffer"
     })
 
-    print("🔹 Calculating annual mean values of environmental factors in hotspot areas...")
+    print("Calculating annual mean values of environmental factors in hotspot areas...")
     yearly_env_stats = hotspot_data.groupby("year").agg({
         "Annual_Mean": "mean",
         "road_density": "mean"
     }).reindex(ALL_YEARS)
 
-    print("🔹 Counting earthquakes by year in hotspot areas...")
+    print("Counting earthquakes by year in hotspot areas...")
     eq_df = pd.read_csv(eq_points_csv_path)
 
     if "year" not in eq_df.columns:
@@ -153,7 +153,7 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     hotspot_summary = grid.loc[target_grid_ids, ["total_sum", "slope", "p_value"]].copy()
     hotspot_summary.index.name = "grid_id"
 
-    print("🔹 Saving cache results...")
+    print("Saving cache results...")
     yearly_road_stats.to_csv(
         os.path.join(cache_dir, "yearly_road_stats.csv"),
         encoding="utf-8-sig"
@@ -179,8 +179,8 @@ def compute_and_cache_results(csv_path, shp_path, road_path, eq_points_csv_path,
     )
 
     t1 = time.time()
-    print(f"✅ All computations completed; cache saved to: {cache_dir}")
-    print(f"⏱ Total elapsed time: {t1 - t0:.2f} seconds")
+    print(f"All computations completed; cache saved to: {cache_dir}")
+    print(f"Total elapsed time: {t1 - t0:.2f} seconds")
 
 
 def plot_from_cache(cache_dir, out_dir,
@@ -203,7 +203,7 @@ def plot_from_cache(cache_dir, out_dir,
             os.path.exists(eq_counts_path)):
         raise FileNotFoundError("Cache files do not exist; please run the full analysis first.")
 
-    print("🔹 Reading cache files and plotting...")
+    print("Reading cache files and plotting...")
 
     yearly_road_stats = pd.read_csv(road_stats_path, index_col=0)
     yearly_env_stats = pd.read_csv(env_stats_path, index_col=0)
@@ -336,8 +336,8 @@ def plot_from_cache(cache_dir, out_dir,
     plt.show()
 
     t1 = time.time()
-    print(f"✅ Plot saved: {save_path}")
-    print(f"⏱ Plotting time: {t1 - t0:.2f} seconds")
+    print(f"Plot saved: {save_path}")
+    print(f"Plotting time: {t1 - t0:.2f} seconds")
 
 
 def analyze_hotspots_with_factors(csv_path, shp_path, road_path, eq_points_csv_path,
@@ -357,12 +357,12 @@ def analyze_hotspots_with_factors(csv_path, shp_path, road_path, eq_points_csv_p
     )
 
     if force_recompute or (not use_cache) or (not cache_exists):
-        print("🔹 No usable cache detected; starting the full analysis...")
+        print("No usable cache detected; starting the full analysis...")
         compute_and_cache_results(
             csv_path, shp_path, road_path, eq_points_csv_path, cache_dir
         )
     else:
-        print("✅ Cache detected; skipping the time-consuming analysis step.")
+        print("Cache detected; skipping the time-consuming analysis step.")
 
     plot_from_cache(cache_dir, out_dir)
 
@@ -374,8 +374,8 @@ csv_path = r'H:/Himalaya/RF_susceptibility/features_pos.csv'
 shp_path = r'H:/Himalaya/grid/Himalaya_hex_1000km2/Himalaya_hex_1000km2.shp'
 road_path = r'H:\Himalaya\cause\Road\osm_roads_himalaya\roads_latest\roads_2025_clip_add_Ms.shp'
 eq_points_csv_path = r'H:\Himalaya\cause\Earthquake\usgs_shakemap_dual\eq5_00_24.csv'
-out_dir = r'H:/Himalaya/figure/figure3热点区域分布统计图/'
-cache_dir = r'H:\Himalaya\figure\figure3热点区域分布统计图\cache_hotspot_road_buffer1000_with_eq/'
+out_dir = r'H:/Himalaya/figure/'
+cache_dir = r'H:\Himalaya\figure\cache_hotspot_road_buffer1000_with_eq/'
 
 analyze_hotspots_with_factors(
     csv_path=csv_path,
