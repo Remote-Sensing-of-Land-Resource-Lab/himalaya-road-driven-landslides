@@ -3,7 +3,6 @@
 # When shape index (SI) > 3, deviation angle < 60°
 # In each patch, 80% of pixels have numObs > 100
 
-# yes
 
 import numpy as np
 import rasterio
@@ -57,18 +56,18 @@ def process_single_year(region, year):
 
     # ===== Skip logic =====
     if is_valid_tif(final_out):
-        print(f"✅ Already exists and is valid: {region}-{year}; skipping")
+        print(f"Already exists and is valid: {region}-{year}; skipping")
         return True
     
     if os.path.exists(tmp_out):
-        print(f"⚠️ Residual temporary file detected; deleting and reprocessing: {tmp_out}")
+        print(f"Residual temporary file detected; deleting and reprocessing: {tmp_out}")
         os.remove(tmp_out)
 
     if is_valid_tif(final_out):
-        print(f"✅ Already completed: {region}-{year}; skipping")
+        print(f"Already completed: {region}-{year}; skipping")
         return True
     elif os.path.exists(final_out):  # File exists but is corrupted
-        print(f"⚠️ Corrupt file detected; deleting and reprocessing: {final_out}")
+        print(f"Corrupt file detected; deleting and reprocessing: {final_out}")
         os.remove(final_out)
 
 
@@ -197,12 +196,12 @@ def process_single_year(region, year):
 
         # Atomic replacement: ensure only a complete file becomes final_out
         os.replace(tmp_out, final_out)
-        print(f"✅ Completed {region}-{year} → {final_out}")
+        print(f"Completed {region}-{year} → {final_out}")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error while processing {region}-{year}: {str(e)}")
+        print(f"Error while processing {region}-{year}: {str(e)}")
         if os.path.exists(tmp_out):
             os.remove(tmp_out)  # Clean up the bad temporary file
         return False
