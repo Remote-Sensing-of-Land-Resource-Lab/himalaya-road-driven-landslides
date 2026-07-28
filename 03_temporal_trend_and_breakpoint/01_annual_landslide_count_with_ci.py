@@ -2,10 +2,6 @@
 """
 Calculate adjusted annual landslide counts with approximate 95% CI directly
 from the final landslide inventory, then plot the count time series.
-
-This combines the original count-CI generation step and the plotting step from
-frequency_count_CL.py, without requiring
-13w_landslides_list_annual_area_ci_counts.csv.
 """
 
 import os
@@ -21,7 +17,7 @@ from scipy import stats
 # =========================================================
 input_csv = r"H:\Himalaya\13w_landslides_list_final.csv"
 
-output_dir = r"H:\Himalaya\figure\figure2总统计图"
+output_dir = r"H:\Himalaya\figure"
 os.makedirs(output_dir, exist_ok=True)
 
 output_csv = os.path.join(output_dir, "13w_landslides_count_approx_95CI.csv")
