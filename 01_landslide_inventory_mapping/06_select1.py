@@ -1,4 +1,3 @@
-# Yes
 # Slope
 
 import os
@@ -256,7 +255,7 @@ def process_all_regions(base_output_dir, slope_path, output_dir, slope_thre=15):
 
 if __name__ == "__main__":
     base_output_dir = r"H:\Himalaya\Landsat_density\output"
-    slope_path = r"D:/喜马拉雅/dataset/喜马拉雅山区30m坡度分布数据-数据实体/喜马拉雅山区30m坡度分布数据.tif"
+    slope_path = r"D:/dataset/aspect/30m_aspect.tif"
     output_dir = r"H:\Himalaya\Landsat_density/output/select_1"
     slope_thre = 15
     process_all_regions(base_output_dir, slope_path, output_dir, slope_thre)
