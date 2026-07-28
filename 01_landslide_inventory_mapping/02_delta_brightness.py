@@ -1,7 +1,6 @@
 # Input a folder and compute brightness differences for all TIFF images within it
 # Coefficients are stored by band
 # Compute brightness differences at a fixed date (July 15 of the previous and following year)
-# Yes
 
 import rasterio
 import numpy as np
