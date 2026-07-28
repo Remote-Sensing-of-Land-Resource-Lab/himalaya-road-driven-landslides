@@ -1,5 +1,4 @@
 # Batch-compute deviation angles for aspect direction
-# Yes
 
 import os
 import glob
@@ -175,7 +174,7 @@ def process_scene(scene_id, aspect_wgs84_path):
         try:
             year = int(filename.split("_")[-1].split(".")[0])
         except:
-            print(f"⚠ Skipping {filename}: unable to parse the year")
+            print(f"Skipping {filename}: unable to parse the year")
             continue
 
         process_landslide_file(input_file, output_folder, aspect_wgs84_path, year)
@@ -189,19 +188,19 @@ def process_scene(scene_id, aspect_wgs84_path):
 def main():
     base_path = r"H:\Himalaya\Landsat_density"
 
-    dataset_path = r"D:/喜马拉雅/dataset/喜马拉雅山区30m坡向分布数据-数据实体"
-    aspect_path = os.path.join(dataset_path, "喜马拉雅山区30m坡向分布数据.tif")
+    dataset_path = r"D:/dataset/aspect"
+    aspect_path = os.path.join(dataset_path, "30m_aspect.tif")
     aspect_wgs84_path = os.path.join(dataset_path, "aspect_wgs84.tif")
 
     ref_candidates = glob.glob(os.path.join(base_path, "output", "select_1", "*", "filter1_*.tif"))
     if not ref_candidates:
-        raise FileNotFoundError("❌ No filter1_*.tif files were found; please check the path and file naming")
+        raise FileNotFoundError("No filter1_*.tif files were found; please check the path and file naming")
     ref_path = ref_candidates[0]
 
     reproject_aspect_once(aspect_path, aspect_wgs84_path, ref_path)
 
     scene_ids = [os.path.basename(p) for p in glob.glob(os.path.join(base_path, "output", "select_1", "*"))]
-    print(f"✅ A total of {len(scene_ids)} scenes will be processed: {scene_ids[:10]}{'...' if len(scene_ids) > 10 else ''}")
+    print(f"A total of {len(scene_ids)} scenes will be processed: {scene_ids[:10]}{'...' if len(scene_ids) > 10 else ''}")
 
     start_time = time.time()
 
@@ -209,7 +208,7 @@ def main():
         executor.map(partial(process_scene, aspect_wgs84_path=aspect_wgs84_path), scene_ids)
 
     elapsed_time = time.time() - start_time
-    print(f"🎯 All scenes processed; total elapsed time: {elapsed_time:.2f} seconds")
+    print(f"All scenes processed; total elapsed time: {elapsed_time:.2f} seconds")
 
 
 if __name__ == "__main__":
