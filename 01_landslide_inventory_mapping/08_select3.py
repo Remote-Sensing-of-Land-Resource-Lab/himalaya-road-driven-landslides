@@ -200,10 +200,10 @@ def process_all_regions(base_dir, road_raster, water_raster, buildings_raster,la
 
 if __name__ == "__main__":
     base_dir = r"H:/Himalaya/output/select_2_S1out" 
-    road_raster = r"D:/喜马拉雅/input/roads/him_roads_wgs84.tif"
-    water_raster = r"D:/喜马拉雅/input/water/him_water_wgs84.tif"
-    buildings_raster = r"D:/喜马拉雅/input/building/him_building_wgs84.tif"
-    landuse_raster = r"D:/喜马拉雅/dataset/喜马拉雅山区30m土地覆盖(2020)/Reclass_Him2020.tif"
+    road_raster = r"D:/input/roads/him_roads_wgs84.tif"
+    water_raster = r"D:/input/water/him_water_wgs84.tif"
+    buildings_raster = r"D:/input/building/him_building_wgs84.tif"
+    landuse_raster = r"D:/dataset/30m_LULC_2020/Reclass_Him2020.tif"
     output_dir = r"H:/Himalaya/output/select_3_S1out"
     threshold_road = 0.5  
     threshold_water = 0.8 
