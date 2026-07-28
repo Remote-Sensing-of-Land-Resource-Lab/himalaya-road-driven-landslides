@@ -1,4 +1,5 @@
-# Changes in Feature Importance of Hotspot Areas (12 Variables)
+# Changes in Feature Importance of Hotspot Areas
+
 import pandas as pd
 import numpy as np
 import geopandas as gpd
@@ -20,7 +21,7 @@ N_thre = 250
 #1. Spatial Hotspot Selection (Lock Analysis Area)
 # ==========================================
 def get_hotspot_ids(csv_path, shp_path):
-    print("🔹 Identifying spatial hotspot grids...")
+    print("Identifying spatial hotspot grids...")
     df_raw = pd.read_csv(csv_path)
     gdf_raw = gpd.GeoDataFrame(df_raw, geometry=gpd.points_from_xy(df_raw.lon, df_raw.lat), crs="EPSG:4326")
     grid = gpd.read_file(shp_path)
@@ -45,22 +46,20 @@ def get_hotspot_ids(csv_path, shp_path):
             except:
                 pass
 
-    print(f"✅ Found significant increasing hotspot grids: {len(hotspot_ids)}")
+    print(f"Found significant increasing hotspot grids: {len(hotspot_ids)}")
     return hotspot_ids
 
 
-# 设置文件路径
 csv_input = "H:/Himalaya/RF_susceptibility/features_pos.csv"
 shp_input = "H:/Himalaya/grid/Himalaya_hex_1000km2/Himalaya_hex_1000km2.shp"
 model_input = "H:/Himalaya/RF_susceptibility/features_all.csv"
 
-# 获取热点 ID
 hotspot_indices = get_hotspot_ids(csv_input, shp_input)
 
 # ==========================================
 # 2. Load modeling data and apply spatial filtering
 # ==========================================
-print("🔹 Identifying spatial hotspot grids...")
+print("Identifying spatial hotspot grids...")
 df_full = pd.read_csv(model_input)
 gdf_model = gpd.GeoDataFrame(df_full, geometry=gpd.points_from_xy(df_full.lon, df_full.lat), crs="EPSG:4326")
 grid_shp = gpd.read_file(shp_input)
@@ -181,7 +180,7 @@ def preprocess_and_train(data, name):
 rf_alpha, importances_alpha, X_alpha_all = preprocess_and_train(data_alpha, "Period Alpha")
 rf_beta, importances_beta, X_beta_all = preprocess_and_train(data_beta, "Period Beta")
 
-print("🔹 Export the feature importance results for the two periods as CSV...")
+print("Export the feature importance results for the two periods as CSV...")
 
 importance_df = pd.DataFrame({
     'Feature': grouped_features,
