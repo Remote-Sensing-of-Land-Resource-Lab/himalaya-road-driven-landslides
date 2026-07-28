@@ -41,7 +41,7 @@ MAX_PROCS_EXTRACT = max(1, cpu_count() - 1)
 # -----------------------------
 def clip_chirps_files_to_shape(nc_files, shapefile, out_nc):
     if os.path.exists(out_nc):
-        print("✅ Found existing clipped file:", out_nc)
+        print("Found existing clipped file:", out_nc)
         return xr.open_dataset(out_nc)
 
     gdf = gpd.read_file(shapefile).to_crs(epsg=4326)
@@ -92,7 +92,7 @@ def clip_chirps_files_to_shape(nc_files, shapefile, out_nc):
             )
             clipped_list.append(ds_masked)
         except Exception as e:
-            print("⚠️ Clip failed:", nc_path, e)
+            print("Clip failed:", nc_path, e)
 
     if not clipped_list:
         raise RuntimeError("No CHIRPS files successfully clipped.")
@@ -287,4 +287,4 @@ if __name__ == "__main__":
 
     merged = pd.concat([df.reset_index(drop=True), df_out[["D_days", "E_mm", "I_mm_day", "diff_days"]]], axis=1)
     merged.to_csv(OUT_CSV, index=False, encoding="utf-8-sig")
-    print(f"✅ Done. Results saved to: {OUT_CSV}")
+    print(f"Done. Results saved to: {OUT_CSV}")
