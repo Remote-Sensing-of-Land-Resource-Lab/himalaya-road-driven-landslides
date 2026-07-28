@@ -38,7 +38,7 @@ file_mapping = {
     'plan_curv':     'D:/dataset/plan_curvature.tif',
     'profile_curv':  'D:/dataset/profile_curvature.tif',
 
-    'LC_Raw':     'D:/dataset/LULC_30m_LSM.tif', 
+    'LC_Raw':     'D:/dataset/LULC_2020_LSM.tif', 
     'Litho_Raw':        'D:/dataset/GLiM_LSM.tif'  
 
 }
