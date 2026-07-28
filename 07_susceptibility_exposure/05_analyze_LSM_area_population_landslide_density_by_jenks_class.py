@@ -10,14 +10,14 @@ tasks = [
     {
         "name": "2000-2019",
         "tif": r"H:\Himalaya\RF_susceptibility\susceptibility\b.result_map\LSM_2000_2019.tif",
-        "pop_tif": r"D:\喜马拉雅\dataset\Population_Landscan_1km_yearly\Himalaya_Pop_00_19_mean_30_correct.tif",
+        "pop_tif": r"D:\dataset\Population_Landscan_1km_yearly\Himalaya_Pop_00_19_mean_30.tif",
         "start_year": 2000,
         "end_year": 2019
     },
     {
         "name": "2020-2024",
         "tif": r"H:\Himalaya\RF_susceptibility\susceptibility\b.result_map\LSM_2020_2024.tif",
-        "pop_tif": r"D:\喜马拉雅\dataset\Population_Landscan_1km_yearly\Himalaya_Pop_20_24_mean_30_correct.tif",
+        "pop_tif": r"D:\dataset\Population_Landscan_1km_yearly\Himalaya_Pop_20_24_mean_30.tif",
         "start_year": 2020,
         "end_year": 2024
     }
