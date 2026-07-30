@@ -1,4 +1,4 @@
-# Recent surge in Himalayan landsliding is associated with rapid road expansion
+# Rapid road expansion drives a recent surge in Himalayan landsliding
 
 This repository contains the analysis workflow and code used for a study investigating how rapid road-network expansion has reshaped landslide regimes across the Himalaya.
 
